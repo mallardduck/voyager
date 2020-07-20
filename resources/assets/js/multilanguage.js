@@ -1,4 +1,6 @@
-Vue.prototype.$language = new Vue({
+import { createApp } from 'vue';
+
+Voyager.config.globalProperties.$language = createApp({
     data: {
         locale: document.getElementsByTagName('html')[0].getAttribute('lang'),
         initial_locale: document.getElementsByTagName('html')[0].getAttribute('lang'),
@@ -46,7 +48,7 @@ Vue.prototype.$language = new Vue({
     }
 });
 
-Vue.mixin({
+Voyager.mixin({
     methods: {
         get_translatable_object: function (input) {
             if (this.isString(input) || this.isNumber(input) || this.isBoolean(input)) {
@@ -100,11 +102,6 @@ Vue.mixin({
             }
 
             return translation;
-        },
-
-        __: function (key, replace = {})
-        {
-            return this.trans(key, replace);
         },
 
         trans_choice: function (key, count = 1, replace = {})

@@ -1,4 +1,4 @@
-Vue.mixin({
+Voyager.mixin({
     methods: {
         kebab_case: function (input, char = '-') {
             return input

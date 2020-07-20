@@ -1,6 +1,6 @@
 export default {
-    install (Vue) {
-        Vue.prototype.$store = new Vue({
+    install (app, config) {
+        app.config.globalProperties.$store = {
             data: {
                 routes: [],
                 formfields: [],
@@ -103,6 +103,6 @@ export default {
                     vm.pageLoading = false;
                 });
             }
-        });
+        };
     }
 };

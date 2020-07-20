@@ -8,5 +8,3 @@ import './helper/url';
 
 import './directives/focus';
 import './directives/scrollto';
-
-Vue.prototype.$eventHub = new Vue({});

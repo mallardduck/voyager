@@ -1,4 +1,4 @@
-Vue.mixin({
+Voyager.mixin({
     methods: {
         clamp: function (num, min, max) {
             if (num < min) {

@@ -1,4 +1,4 @@
-Vue.directive('scroll-to', {
+Voyager.directive('scroll-to', {
     inserted: function (el, binding) {
         el.addEventListener('click', function (e) {
             var element = document.getElementById('top');

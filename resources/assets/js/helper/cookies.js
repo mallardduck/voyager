@@ -1,4 +1,4 @@
-Vue.mixin({
+Voyager.mixin({
     methods: {
         getCookie: function(name) {
             var name = name + '=';

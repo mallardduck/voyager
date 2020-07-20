@@ -1,3 +1,14 @@
+import { createApp } from '../../../node_modules/vue/dist/vue.esm-bundler';
+import Store from './store';
+
+const Voyager = createApp({
+    
+});
+
+Voyager.use(Store);
+
+window.Voyager = Voyager;
+
 require('./vendor');
 require('./helper');
 require('./notify');
@@ -7,9 +18,8 @@ require('./formfields');
 require('./layout');
 require('./ui');
 
-Vue.component('settings-manager', require('../components/Settings/Manager').default);
-Vue.component('plugins-manager', require('../components/Plugins/Manager').default);
-Vue.component('login', require('../components/Auth/Login').default);
+Voyager.component('settings-manager', require('../components/Settings/Manager.vue').default);
+Voyager.component('plugins-manager', require('../components/Plugins/Manager.vue').default);
+Voyager.component('login', require('../components/Auth/Login.vue').default);
 
-import Store from './store';
-Vue.use(Store);
+Voyager.mount('#voyager');

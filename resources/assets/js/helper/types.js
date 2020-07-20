@@ -1,4 +1,4 @@
-Vue.mixin({
+Voyager.mixin({
     methods: {
         isArray: function (input) {
             return (input && typeof input === 'object' && input instanceof Array);

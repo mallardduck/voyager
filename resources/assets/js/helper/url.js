@@ -1,4 +1,4 @@
-Vue.mixin({
+Voyager.mixin({
     methods: {
         addParameterToUrl: function (parameter, value, url = null) {
             var newurl = new URL(document.location.href);

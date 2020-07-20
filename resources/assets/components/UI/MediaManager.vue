@@ -180,8 +180,6 @@ var Status = {
     Failed   : 4,
 };
 
-Vue.prototype.Status = Status;
-
 export default {
     props: {
         'uploadUrl': {

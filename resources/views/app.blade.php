@@ -46,6 +46,7 @@
     @endforeach
 @endforeach
 <script>
+/*
 var voyager = new Vue({
     el: '#voyager',
     mounted: function () {
@@ -66,6 +67,7 @@ var voyager = new Vue({
         this.$store.json_output = {{ var_export(Voyager::setting('admin.json-output', true)) }};
     }
 });
+*/
 </script>
 @yield('js')
 </html>

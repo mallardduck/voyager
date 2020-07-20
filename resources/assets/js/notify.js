@@ -1,4 +1,6 @@
-Vue.prototype.$notify = new Vue({
+import { createApp } from 'vue';
+
+Voyager.config.globalProperties.$notify = createApp({
     data: function () {
         return {
             notifications: [],
@@ -27,7 +29,7 @@ Vue.prototype.$notify = new Vue({
     }
 });
 
-Vue.prototype.$notification = class Notification {
+Voyager.config.globalProperties.$notification = class Notification {
     constructor(message) {
         this._message = message;
         this._icon = 'information-circle';

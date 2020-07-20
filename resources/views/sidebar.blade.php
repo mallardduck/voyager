@@ -5,7 +5,7 @@
         <div class="absolute inset-0 bg-gray-600 opacity-75"></div>
     </div>
     <div class="fixed inset-0 flex z-40" @click="$store.toggleSidebar()">
-        <div class="flex-1 flex flex-col max-w-xs w-full sidebar" @click.stop="">
+        <div class="flex-1 flex flex-col max-w-xs w-full sidebar">
             <div class="absolute top-0 right-0 p-1">
                 <button @click="$store.toggleSidebar()" class="flex items-center justify-center h-12 w-12 rounded-full">
                     <icon icon="x"></icon>
