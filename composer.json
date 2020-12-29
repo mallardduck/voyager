@@ -31,7 +31,8 @@
         "laravel/framework": "~8.0",
         "orchestra/testbench": ">=4.0",
         "laravel/browser-kit-testing": ">=5.0.0",
-        "orchestra/testbench-browser-kit": ">=4.0"
+        "orchestra/testbench-browser-kit": ">=4.0",
+        "brianium/paratest": "^6.1"
     },
     "autoload": {
         "psr-4": {
@@ -54,5 +55,9 @@
     },
     "suggest": {
         "laravel/legacy-factories": "Required to run Voyager tests with Laravel 8.x"
+    },
+    "scripts": {
+        "test": "XDEBUG_MODE=coverage ./vendor/bin/phpunit",
+        "para": "XDEBUG_MODE=coverage ./vendor/bin/paratest -p8"
     }
 }
