@@ -18,7 +18,6 @@ use TCG\Voyager\Facades\Voyager;
 */
 
 Route::group(['as' => 'voyager.'], function () {
-    event(new Routing());
 
     $namespacePrefix = '\\'.config('voyager.controllers.namespace').'\\';
 
@@ -26,7 +25,6 @@ Route::group(['as' => 'voyager.'], function () {
     Route::post('login', ['uses' => $namespacePrefix.'VoyagerAuthController@postLogin', 'as' => 'postlogin']);
 
     Route::group(['middleware' => 'admin.user'], function () use ($namespacePrefix) {
-        event(new RoutingAdmin());
 
         // Main Admin and Logout Route
         Route::get('/', ['uses' => $namespacePrefix.'VoyagerController@index',   'as' => 'dashboard']);
@@ -128,12 +126,8 @@ Route::group(['as' => 'voyager.'], function () {
             Route::get('/', ['uses' => $namespacePrefix.'VoyagerCompassController@index',  'as' => 'index']);
             Route::post('/', ['uses' => $namespacePrefix.'VoyagerCompassController@index',  'as' => 'post']);
         });
-
-        event(new RoutingAdminAfter());
     });
 
     //Asset Routes
     Route::get('voyager-assets', ['uses' => $namespacePrefix.'VoyagerController@assets', 'as' => 'voyager_assets']);
-
-    event(new RoutingAfter());
 });
