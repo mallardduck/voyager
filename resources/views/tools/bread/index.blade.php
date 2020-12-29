@@ -24,7 +24,6 @@
                     </thead>
 
                 @foreach($tables as $table)
-                    @continue(in_array($table->name, config('voyager.database.tables.hidden', [])))
                     <tr>
                         <td>
                             <p class="name">

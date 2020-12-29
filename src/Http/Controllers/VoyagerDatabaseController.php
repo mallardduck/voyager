@@ -26,7 +26,8 @@ class VoyagerDatabaseController extends Controller
 
         $dataTypes = Voyager::model('DataType')->select('id', 'name', 'slug')->get()->keyBy('name')->toArray();
 
-        $tables = array_map(function ($table) use ($dataTypes) {
+        $hiddenTables = config('voyager.database.hidden_tables', []);
+        $tables = collect(SchemaManager::listTableNames())->map(static function ($table) use ($dataTypes) {
             $table = Str::replaceFirst(DB::getTablePrefix(), '', $table);
 
             $table = [
@@ -35,9 +36,10 @@ class VoyagerDatabaseController extends Controller
                 'slug'       => $dataTypes[$table]['slug'] ?? null,
                 'dataTypeId' => $dataTypes[$table]['id'] ?? null,
             ];
-
             return (object) $table;
-        }, SchemaManager::listTableNames());
+        })->filter(static function ($value) use ($hiddenTables) {
+            return !in_array($value->name, $hiddenTables);
+        })->toArray();
 
         return Voyager::view('voyager::tools.database.index')->with(compact('dataTypes', 'tables'));
     }
