@@ -10,6 +10,10 @@ class CompassTest extends TestCase
     {
         parent::setUp();
 
+        if (file_exists($path = __DIR__ . '/../vendor/orchestra/testbench-core/laravel/app/Models/TestModel.php')) {
+            unlink($path);
+        }
+
         Auth::loginUsingId(1);
     }
 
