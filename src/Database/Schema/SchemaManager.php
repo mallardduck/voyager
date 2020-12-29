@@ -2,11 +2,17 @@
 
 namespace TCG\Voyager\Database\Schema;
 
+use Doctrine\DBAL\Schema\AbstractSchemaManager;
 use Doctrine\DBAL\Schema\SchemaException;
 use Doctrine\DBAL\Schema\Table as DoctrineTable;
 use Illuminate\Support\Facades\DB;
 use TCG\Voyager\Database\Types\Type;
 
+/**
+ * Class SchemaManager
+ *
+ * @mixin \Doctrine\DBAL\Schema\AbstractSchemaManager
+ */
 abstract class SchemaManager
 {
     // todo: trim parameters
@@ -16,6 +22,9 @@ abstract class SchemaManager
         return static::manager()->$method(...$args);
     }
 
+    /**
+     * @return AbstractSchemaManager
+     */
     public static function manager()
     {
         return DB::connection()->getDoctrineSchemaManager();
