@@ -38,7 +38,7 @@ class VoyagerDatabaseController extends Controller
             ];
             return (object) $table;
         })->filter(static function ($value) use ($hiddenTables) {
-            return !in_array($value->name, $hiddenTables);
+            return !in_array($value->name, $hiddenTables, true);
         })->toArray();
 
         return Voyager::view('voyager::tools.database.index')->with(compact('dataTypes', 'tables'));
