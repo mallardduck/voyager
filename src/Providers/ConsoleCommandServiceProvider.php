@@ -95,7 +95,7 @@ class ConsoleCommandServiceProvider extends ServiceProvider
     protected function registerMakeModelCommand()
     {
         $this->app->singleton('voyager.command.model', function ($app) {
-            return new MakeModelCommand();
+            return new MakeModelCommand($app['files']);
         });
     }
 
