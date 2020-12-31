@@ -8,6 +8,7 @@ use TCG\Voyager\Commands\AdminCommand;
 use TCG\Voyager\Commands\BreadMigrateCommand;
 use TCG\Voyager\Commands\ControllersCommand;
 use TCG\Voyager\Commands\InstallCommand;
+use TCG\Voyager\Commands\MakeModelCommand;
 
 class ConsoleCommandServiceProvider extends ServiceProvider
 {
@@ -88,6 +89,13 @@ class ConsoleCommandServiceProvider extends ServiceProvider
     {
         $this->app->singleton('voyager.command.migrate', function ($app) {
             return new BreadMigrateCommand($app['migrator'], $app[Dispatcher::class]);
+        });
+    }
+
+    protected function registerMakeModelCommand()
+    {
+        $this->app->singleton('voyager.command.migrate', function ($app) {
+            return new MakeModelCommand();
         });
     }
 
