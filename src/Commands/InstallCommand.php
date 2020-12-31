@@ -74,6 +74,7 @@ class InstallCommand extends Command
         $this->call('vendor:publish', ['--provider' => VoyagerServiceProvider::class, '--tag' => $tags]);
 
         $this->info('Migrating the database tables into your application');
+        $this->call('voyager:bread-migrate', ['--force' => $this->option('force')]);
         $this->call('migrate', ['--force' => $this->option('force')]);
 
         $this->info('Attempting to set Voyager User model as parent to App\User');
