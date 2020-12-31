@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddGroupToSettingsTable extends Migration
+class AddControllerToDataTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddGroupToSettingsTable extends Migration
      */
     public function up()
     {
-        Schema::table('settings', function (Blueprint $table) {
-            $table->string('group')->nullable()->after('order');
+        Schema::connection('voyagerBreads')->table('data_types', function (Blueprint $table) {
+            $table->string('controller')->nullable()->after('model_name');
         });
     }
 
@@ -25,8 +25,8 @@ class AddGroupToSettingsTable extends Migration
      */
     public function down()
     {
-        Schema::table('settings', function (Blueprint $table) {
-            $table->dropColumn('group');
+        Schema::connection('voyagerBreads')->table('data_types', function (Blueprint $table) {
+            $table->dropColumn('controller');
         });
     }
 }

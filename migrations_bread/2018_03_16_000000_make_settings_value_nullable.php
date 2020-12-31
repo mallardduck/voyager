@@ -14,7 +14,7 @@ class MakeSettingsValueNullable extends Migration
      */
     public function up()
     {
-        Schema::table('settings', function (Blueprint $table) {
+        Schema::connection('voyagerBreads')->table('settings', function (Blueprint $table) {
             $table->text('value')->nullable()->change();
         });
     }
@@ -26,9 +26,9 @@ class MakeSettingsValueNullable extends Migration
      */
     public function down()
     {
-        DB::table('settings')->whereNull('value')->update(['value' => '']);
+        DB::connection('voyagerBreads')->table('settings')->whereNull('value')->update(['value' => '']);
 
-        Schema::table('settings', function (Blueprint $table) {
+        Schema::connection('voyagerBreads')->table('settings', function (Blueprint $table) {
             $table->text('value')->nullable(false)->change();
         });
     }

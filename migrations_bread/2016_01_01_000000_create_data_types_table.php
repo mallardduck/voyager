@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateDataTypesTable extends Migration
 {
@@ -13,7 +14,7 @@ class CreateDataTypesTable extends Migration
     public function up()
     {
         // Create table for storing roles
-        Schema::create('data_types', function (Blueprint $table) {
+        Schema::connection('voyagerBreads')->create('data_types', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->unique();
             $table->string('slug')->unique();
@@ -27,7 +28,7 @@ class CreateDataTypesTable extends Migration
         });
 
         // Create table for storing roles
-        Schema::create('data_rows', function (Blueprint $table) {
+        Schema::connection('voyagerBreads')->create('data_rows', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('data_type_id')->unsigned();
             $table->string('field');
@@ -53,7 +54,7 @@ class CreateDataTypesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('data_rows');
-        Schema::drop('data_types');
+        Schema::connection('voyagerBreads')->drop('data_rows');
+        Schema::connection('voyagerBreads')->drop('data_types');
     }
 }

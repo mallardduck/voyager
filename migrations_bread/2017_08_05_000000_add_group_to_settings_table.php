@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddDetailsToDatatypesTable extends Migration
+class AddGroupToSettingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddDetailsToDatatypesTable extends Migration
      */
     public function up()
     {
-        Schema::table('data_types', function (Blueprint $table) {
-            $table->text('details')->nullable()->after('server_side');
+        Schema::connection('voyagerBreads')->table('settings', function (Blueprint $table) {
+            $table->string('group')->nullable()->after('order');
         });
     }
 
@@ -25,8 +25,8 @@ class AddDetailsToDatatypesTable extends Migration
      */
     public function down()
     {
-        Schema::table('data_types', function (Blueprint $table) {
-            $table->dropColumn('details');
+        Schema::connection('voyagerBreads')->table('settings', function (Blueprint $table) {
+            $table->dropColumn('group');
         });
     }
 }
