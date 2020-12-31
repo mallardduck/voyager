@@ -13,6 +13,8 @@ class DataType extends Model
 {
     use Translatable;
 
+    protected $connection = 'voyagerBreads';
+
     protected $translatable = ['display_name_singular', 'display_name_plural'];
 
     protected $table = 'data_types';

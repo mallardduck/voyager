@@ -2,8 +2,10 @@
 
 namespace TCG\Voyager\Providers;
 
+use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Support\ServiceProvider;
 use TCG\Voyager\Commands\AdminCommand;
+use TCG\Voyager\Commands\BreadMigrateCommand;
 use TCG\Voyager\Commands\ControllersCommand;
 use TCG\Voyager\Commands\InstallCommand;
 
@@ -18,6 +20,7 @@ class ConsoleCommandServiceProvider extends ServiceProvider
         'Admin' => 'voyager.command.admin',
         'Controllers' => 'voyager.command.controllers',
         'Install' => 'voyager.command.install',
+        'BreadMigrate' => 'voyager.command.migrate',
     ];
 
     /**
@@ -78,6 +81,13 @@ class ConsoleCommandServiceProvider extends ServiceProvider
     {
         $this->app->singleton('voyager.command.install', function () {
             return new InstallCommand();
+        });
+    }
+
+    protected function registerBreadMigrateCommand()
+    {
+        $this->app->singleton('voyager.command.migrate', function ($app) {
+            return new BreadMigrateCommand($app['migrator'], $app[Dispatcher::class]);
         });
     }
 

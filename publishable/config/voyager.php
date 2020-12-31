@@ -79,6 +79,7 @@ return [
     */
 
     'database' => [
+        'bread_location' => env('BREAD_DB_DATABASE', storage_path('voyager/breads.sqlite')),
         'hidden_tables' => [
             'migrations', 'data_rows', 'data_types', 'menu_items', 'password_resets', 'permission_role', 'settings'
         ],

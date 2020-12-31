@@ -55,6 +55,18 @@ class VoyagerServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        /**
+         * @var \Illuminate\Config\Repository $config
+         */
+        $config = $this->app->get('config');
+        $config->set('database.connections.voyagerBreads', [
+            'driver' => 'sqlite',
+            'url' => null,
+            'database' => $config->get('voyager.database.bread_location', storage_path('voyager/breads.sqlite')),
+            'prefix' => '',
+            'foreign_key_constraints' => true,
+        ]);
+
         $this->app->register(VoyagerSupportServiceProvider::class);
 
         $loader = AliasLoader::getInstance();
@@ -105,11 +117,11 @@ class VoyagerServiceProvider extends ServiceProvider
         $this->loadTranslationsFrom(realpath(__DIR__.'/../publishable/lang'), 'voyager');
 
         if (config('voyager.database.autoload_migrations', true)) {
-            if (config('app.env') == 'testing') {
-                $this->loadMigrationsFrom(realpath(__DIR__.'/migrations'));
+            if (config('app.env') === 'testing') {
+                $this->loadMigrationsFrom(realpath(__DIR__ . '/database/migrations'));
             }
 
-            $this->loadMigrationsFrom(realpath(__DIR__.'/../migrations'));
+            $this->loadMigrationsFrom(realpath(dirname(__DIR__) . '/database/migrations'));
         }
 
         $this->loadAuth();

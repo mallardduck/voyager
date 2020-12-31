@@ -7,6 +7,8 @@ use TCG\Voyager\Events\SettingUpdated;
 
 class Setting extends Model
 {
+    protected $connection = 'voyagerBreads';
+
     protected $table = 'settings';
 
     protected $guarded = [];

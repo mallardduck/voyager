@@ -9,6 +9,8 @@ class DataRow extends Model
 {
     use Translatable;
 
+    protected $connection = 'voyagerBreads';
+
     protected $table = 'data_rows';
 
     protected $guarded = [];
