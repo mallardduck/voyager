@@ -64,6 +64,7 @@ class TestCase extends OrchestraTestCase
             'database' => ':memory:',
             'prefix'   => '',
         ]);
+        $app['config']->set('database.connections.voyagerBreads.database', ':memory:');
 
         // Setup Voyager configuration
         $app['config']->set('voyager.user.namespace', User::class);
