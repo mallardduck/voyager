@@ -55,10 +55,7 @@ class VoyagerServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->register(VoyagerEventServiceProvider::class);
-        $this->app->register(ImageServiceProvider::class);
-        $this->app->register(VoyagerDummyServiceProvider::class);
-        $this->app->register(DoctrineSupportServiceProvider::class);
+        $this->app->register(VoyagerSupportServiceProvider::class);
 
         $loader = AliasLoader::getInstance();
         $loader->alias('Voyager', VoyagerFacade::class);
@@ -80,11 +77,6 @@ class VoyagerServiceProvider extends ServiceProvider
 
         if ($this->app->runningInConsole()) {
             $this->registerPublishableResources();
-            $this->registerConsoleCommands();
-        }
-
-        if (!$this->app->runningInConsole() || config('app.env') == 'testing') {
-            $this->registerAppCommands();
         }
     }
 
@@ -344,23 +336,5 @@ class VoyagerServiceProvider extends ServiceProvider
         VoyagerFacade::addAfterFormField(DescriptionHandler::class);
 
         event(new FormFieldsRegistered($formFields));
-    }
-
-    /**
-     * Register the commands accessible from the Console.
-     */
-    private function registerConsoleCommands()
-    {
-        $this->commands(Commands\InstallCommand::class);
-        $this->commands(Commands\ControllersCommand::class);
-        $this->commands(Commands\AdminCommand::class);
-    }
-
-    /**
-     * Register the commands accessible from the App.
-     */
-    private function registerAppCommands()
-    {
-        $this->commands(Commands\MakeModelCommand::class);
     }
 }
