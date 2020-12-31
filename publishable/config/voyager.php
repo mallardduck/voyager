@@ -79,11 +79,6 @@ return [
     */
 
     'database' => [
-        'bread' => [
-            'driver' => 'sleekdb',
-            'database' => storage_path('voyager/breads'),
-            'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
-        ],
         'hidden_tables' => [
             'migrations', 'data_rows', 'data_types', 'menu_items', 'password_resets', 'permission_role', 'settings'
         ],
