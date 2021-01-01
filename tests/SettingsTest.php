@@ -31,7 +31,7 @@ class SettingsTest extends TestCase
              ->seeInDatabase('settings', [
                  'key'   => $key,
                  'value' => $newTitle,
-             ]);
+             ], 'voyagerBreads');
     }
 
     public function testCanCreateSetting()
@@ -48,7 +48,7 @@ class SettingsTest extends TestCase
                  'key'          => 'site.new_setting',
                  'type'         => 'text',
                  'group'        => 'Site',
-             ]);
+             ], 'voyagerBreads');
     }
 
     public function testCanDeleteSetting()
@@ -59,7 +59,7 @@ class SettingsTest extends TestCase
 
         $this->notSeeInDatabase('settings', [
             'id'    => $setting->id,
-        ]);
+        ], 'voyagerBreads');
     }
 
     public function testCanDeleteSettingsValue()
@@ -72,7 +72,7 @@ class SettingsTest extends TestCase
         $this->seeInDatabase('settings', [
             'id'    => $setting->id,
             'value' => '',
-        ]);
+        ], 'voyagerBreads');
     }
 
     public function testCanMoveSettingUp()
@@ -84,7 +84,7 @@ class SettingsTest extends TestCase
         $this->seeInDatabase('settings', [
             'id'    => $setting->id,
             'order' => ($setting->order - 1),
-        ]);
+        ], 'voyagerBreads');
     }
 
     public function testCanMoveSettingDown()
@@ -96,6 +96,6 @@ class SettingsTest extends TestCase
         $this->seeInDatabase('settings', [
             'id'    => $setting->id,
             'order' => ($setting->order + 1),
-        ]);
+        ], 'voyagerBreads');
     }
 }
