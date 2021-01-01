@@ -28,10 +28,10 @@ class SettingsTest extends TestCase
              ->seeInElement('button', __('voyager::settings.save'))
              ->press(__('voyager::settings.save'))
              ->seePageIs(route('voyager.settings.index'))
-             ->seeInDatabase('settings', [
+             ->seeInBreadsDatabase('settings', [
                  'key'   => $key,
                  'value' => $newTitle,
-             ], 'voyagerBreads');
+             ]);
     }
 
     public function testCanCreateSetting()
@@ -43,12 +43,12 @@ class SettingsTest extends TestCase
              ->select('Site', 'group')
              ->press(__('voyager::settings.add_new'))
              ->seePageIs(route('voyager.settings.index'))
-             ->seeInDatabase('settings', [
+             ->seeInBreadsDatabase('settings', [
                  'display_name' => 'New Setting',
                  'key'          => 'site.new_setting',
                  'type'         => 'text',
                  'group'        => 'Site',
-             ], 'voyagerBreads');
+             ]);
     }
 
     public function testCanDeleteSetting()
@@ -57,9 +57,9 @@ class SettingsTest extends TestCase
 
         $this->call('DELETE', route('voyager.settings.delete', $setting->id));
 
-        $this->notSeeInDatabase('settings', [
+        $this->notSeeInBreadsDatabase('settings', [
             'id'    => $setting->id,
-        ], 'voyagerBreads');
+        ]);
     }
 
     public function testCanDeleteSettingsValue()
@@ -69,10 +69,10 @@ class SettingsTest extends TestCase
 
         $this->call('PUT', route('voyager.settings.delete_value', $setting->id));
 
-        $this->seeInDatabase('settings', [
+        $this->seeInBreadsDatabase('settings', [
             'id'    => $setting->id,
             'value' => '',
-        ], 'voyagerBreads');
+        ]);
     }
 
     public function testCanMoveSettingUp()
@@ -81,10 +81,10 @@ class SettingsTest extends TestCase
 
         $this->call('GET', route('voyager.settings.move_up', $setting->id));
 
-        $this->seeInDatabase('settings', [
+        $this->seeInBreadsDatabase('settings', [
             'id'    => $setting->id,
             'order' => ($setting->order - 1),
-        ], 'voyagerBreads');
+        ]);
     }
 
     public function testCanMoveSettingDown()
@@ -93,9 +93,9 @@ class SettingsTest extends TestCase
 
         $this->call('GET', route('voyager.settings.move_down', $setting->id));
 
-        $this->seeInDatabase('settings', [
+        $this->seeInBreadsDatabase('settings', [
             'id'    => $setting->id,
             'order' => ($setting->order + 1),
-        ], 'voyagerBreads');
+        ]);
     }
 }

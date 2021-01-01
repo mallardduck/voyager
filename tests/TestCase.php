@@ -125,4 +125,19 @@ class TestCase extends OrchestraTestCase
 
         return $this->assertSee($text);
     }
+
+    protected function seeInBreadsDatabase($table, array $data)
+    {
+        return $this->seeInDatabase($table, $data, 'voyagerBreads');
+    }
+
+    protected function notSeeInBreadsDatabase($table, array $data)
+    {
+        return $this->notSeeInDatabase($table, $data, 'voyagerBreads');
+    }
+
+    protected function dontSeeInBreadsDatabase($table, array $data)
+    {
+        return $this->notSeeInBreadsDatabase($table, $data);
+    }
 }
