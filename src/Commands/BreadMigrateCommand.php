@@ -51,8 +51,8 @@ class BreadMigrateCommand extends MigrateCommand
         $this->info('Migrate the Voyager BREAD\'s database.');
         // Hardcode it to use the voyagerBreads database.
         $this->input->setOption('database', 'voyagerBreads');
-        $this->input->setOption('path', dirname(__DIR__, 2) . '/migrations_bread');
-        $this->input->setOption('realpath', dirname(__DIR__, 2) . '/migrations_bread');
+        $this->input->setOption('path', dirname(__DIR__, 2) . '/breads/migrations');
+        $this->input->setOption('realpath', dirname(__DIR__, 2) . '/breads/migrations');
         $this->setInput($this->input);
 
         if (! $this->confirmToProceed()) {
