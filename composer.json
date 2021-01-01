@@ -36,7 +36,8 @@
     },
     "autoload": {
         "psr-4": {
-            "TCG\\Voyager\\": "src/"
+            "TCG\\Voyager\\": "src/",
+            "VoyagerBreadDb\\Seeders\\": "breads/seeders/"
         }
     },
     "autoload-dev": {

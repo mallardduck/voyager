@@ -5,6 +5,7 @@ namespace TCG\Voyager\Commands;
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Database\Console\Migrations\MigrateCommand;
 use Illuminate\Database\Migrations\Migrator;
+use VoyagerBreadDb\Seeders\VoyagerBreadsDatabaseSeeder;
 
 class BreadMigrateCommand extends MigrateCommand
 {
@@ -75,7 +76,10 @@ class BreadMigrateCommand extends MigrateCommand
             // seed task to re-populate the database, which is convenient when adding
             // a migration and a seed at the same time, as it is only this command.
             if ($this->option('seed') && ! $this->option('pretend')) {
-                $this->call('db:seed', ['--force' => true]);
+                $this->call('db:seed', [
+                    '--force' => true,
+                    '--class' => VoyagerBreadsDatabaseSeeder::class
+                ]);
             }
         });
 

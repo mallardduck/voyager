@@ -1,5 +1,7 @@
 <?php
 
+namespace VoyagerBreadDb\Seeders;
+
 use Illuminate\Database\Seeder;
 use TCG\Voyager\Models\Setting;
 

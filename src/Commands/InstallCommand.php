@@ -9,6 +9,7 @@ use Symfony\Component\Process\Process;
 use TCG\Voyager\Providers\VoyagerDummyServiceProvider;
 use TCG\Voyager\Traits\Seedable;
 use TCG\Voyager\VoyagerServiceProvider;
+use VoyagerBreadDb\Seeders\VoyagerBreadsDatabaseSeeder;
 
 class InstallCommand extends Command
 {
@@ -111,6 +112,7 @@ class InstallCommand extends Command
         }
 
         $this->info('Seeding data into the database');
+        $this->seed(VoyagerBreadsDatabaseSeeder::class);
         $this->seed('VoyagerDatabaseSeeder');
 
         if ($this->option('with-dummy')) {
